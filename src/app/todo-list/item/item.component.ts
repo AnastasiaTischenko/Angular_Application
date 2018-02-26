@@ -8,8 +8,8 @@ import { Todo } from "../shared/todo";
 })
 export class ItemComponent {
  @Input() todo: Todo;
- @Output() delete = new EventEmitter();
- @Output() toggle = new EventEmitter();
+ @Output() delete = new EventEmitter<Object>();
+ @Output() toggle = new EventEmitter<Object>();
   constructor() { }
 
   private onToggle(){
