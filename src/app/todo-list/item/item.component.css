@@ -1,0 +1,24 @@
+.todo-item.completed .title {
+  text-decoration: line-through;
+}
+
+.todo-item.completed .title,
+.todo-item.completed .material-icons {
+  color: lightgray;
+}
+
+.plain{
+  display: flex;
+  justify-content: space-between;
+}
+button.icon{
+  display: flex;
+  border: none;
+  background: none;
+  text-align: center;
+  align-items: center;
+}
+button.icon:hover{
+  border-radius: 30%;
+  background: #d3d3d336;
+}
