@@ -13,8 +13,7 @@ export class TodoService {
   }
 
   createTodo(title: string) {
-    let todo = new Todo(title);
-    this.todos.push(todo)
+    this.todos.push(new Todo(title))
   }
 
   deleteTodo(todo: Todo) {

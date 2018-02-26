@@ -8,7 +8,7 @@ import { TodoService } from "../shared/todo.service";
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit{
-  todos: Todo[];
+  private todos: Todo[];
 
   constructor(private todoService: TodoService) {
     this.todos = [];
@@ -18,11 +18,11 @@ export class ListComponent implements OnInit{
     this.todos = this.todoService.getTodos()
   }
 
-  toggle(todo: Todo){
+  private toggle(todo: Todo){
     this.todoService.toggleTodo(todo);
   }
 
-  delete(todo: Todo) {
+  private delete(todo: Todo) {
     this.todoService.deleteTodo(todo)
   }
 }

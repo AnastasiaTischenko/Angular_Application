@@ -1,6 +1,15 @@
-<form class="input-group mb-3" (ngSubmit)="onSubmite(); todoForm.reset()" #todoForm="ngForm">
-  <input name="title" [(ngModel)]="title" #titleInput type="text" class="form-control" placeholder="What do you want to do?" aria-describedby="basic-addon2" required>
+<form class="input-group mb-3"
+      (ngSubmit)="onSubmite(); todoForm.reset()"
+      #todoForm="ngForm">
+  <input name="title"
+         [(ngModel)]="title"
+         #titleInput type="text"
+         class="form-control" placeholder="What do you want to do?" aria-describedby="basic-addon2" required>
   <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="submit" [disabled]="todoForm.form.invalid"><i class="material-icons">note_add</i></button>
+    <button class="btn btn-outline-secondary"
+            type="submit"
+            [disabled]="todoForm.form.invalid">
+      <i class="material-icons">note_add</i>
+    </button>
   </div>
 </form>

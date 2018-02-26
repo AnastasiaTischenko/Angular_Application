@@ -7,11 +7,11 @@ import { TodoService } from "../shared/todo.service";
   styleUrls: ['./form.component.css']
 })
 export class FormComponent{
-  title: string = '';
+  private title: string = '';
 
   constructor(private todoService: TodoService) { }
 
-  onSubmite(){
+  private onSubmite(){
     this.todoService.createTodo(this.title);
   }
 }

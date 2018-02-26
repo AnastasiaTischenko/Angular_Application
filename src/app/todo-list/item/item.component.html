@@ -1,13 +1,16 @@
-<div class="todo-item" [class.completed]="todo.completed">
+<div class="todo-item"
+     [class.completed]="todo.completed">
   <div class="card">
     <div class="card-body plain">
-      <button class="checkbox icon" (click)="onToggle()">
+      <button class="checkbox icon"
+              (click)="onToggle()">
         <i class="material-icons">{{todo.completed ? 'check_box' : 'check_box_outline_blank'}}</i>
       </button>
 
       <span class="title">{{todo.title}}</span>
 
-      <button class="delete icon actions" (click)="onDelete(todo)">
+      <button class="delete icon actions"
+              (click)="onDelete(todo)">
         <i class="material-icons">delete</i>
       </button>
     </div>
