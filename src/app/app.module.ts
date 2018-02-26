@@ -24,7 +24,6 @@ import {NavLinksComponent} from "./nav-links/nav-links.component";
     AppRoutingModule,
     HomePageModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

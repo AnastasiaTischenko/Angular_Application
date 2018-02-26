@@ -15,6 +15,7 @@ export class ItemComponent implements OnInit {
   ngOnInit() {
   }
   onToggle(){
+    console.log(typeof this.toggle)
     this.toggle.emit(this.todo);
   }
 

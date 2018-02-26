@@ -11,8 +11,6 @@ export class FormComponent{
 
   constructor(private todoService: TodoService) { }
 
-  ngOnInit() {
-  }
   onSubmite(){
     this.todoService.createTodo(this.title);
   }
