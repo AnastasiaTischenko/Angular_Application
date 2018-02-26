@@ -6,8 +6,6 @@ import { Todo } from "./todo";
 export class TodoService {
   private todos: Todo[] = todos;
 
-  constructor() { }
-
   getTodos(): Todo[]{
     return this.todos;
   }
@@ -17,7 +15,7 @@ export class TodoService {
   }
 
   deleteTodo(todo: Todo) {
-    let index = this.todos.indexOf(todo);
+    const index = this.todos.indexOf(todo);
     if (index > -1){
       this.todos.splice(index, 1);
     }

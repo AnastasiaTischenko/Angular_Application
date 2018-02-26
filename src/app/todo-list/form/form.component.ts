@@ -11,7 +11,7 @@ export class FormComponent{
 
   constructor(private todoService: TodoService) { }
 
-  private onSubmite(){
+  onSubmite(){
     this.todoService.createTodo(this.title);
   }
 }

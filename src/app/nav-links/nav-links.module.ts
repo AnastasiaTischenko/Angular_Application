@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 import { NavLinksComponent } from './nav-links.component';
 
@@ -10,10 +8,7 @@ import { NavLinksComponent } from './nav-links.component';
     NavLinksComponent
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
-  ],
-  providers: []
+    BrowserModule
+  ]
 })
 export class NavLinksModule { }

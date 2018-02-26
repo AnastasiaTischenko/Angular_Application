@@ -22,7 +22,7 @@ export class ListComponent implements OnInit{
     this.todoService.toggleTodo(todo);
   }
 
-  private delete(todo: Todo) {
+  delete(todo: Todo) {
     this.todoService.deleteTodo(todo)
   }
 }

@@ -5,8 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './nav-links.component.html',
   styleUrls: ['./nav-links.component.css']
 })
-export class NavLinksComponent {
-
-  constructor() { }
-
-}
+export class NavLinksComponent {}

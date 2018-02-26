@@ -1,4 +1,6 @@
-export const todos = [
+import { Todo } from './todo';
+
+export const todos: Todo[] = [
 	{
 		title: 'изучить  JS',
 		completed: true
