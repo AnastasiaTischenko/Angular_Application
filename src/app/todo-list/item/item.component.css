@@ -10,6 +10,7 @@
 .plain{
   display: flex;
   justify-content: space-between;
+  line-height: 300%;
 }
 button.icon{
   display: flex;

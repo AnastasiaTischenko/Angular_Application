@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule }   from '@angular/forms';
 
 import { TodoListComponent } from './todo-list.component';
 import { FormComponent } from './form/form.component';
@@ -16,7 +17,8 @@ import { TodoService } from './shared/todo.service';
     ItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [TodoService]
 })
