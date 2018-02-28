@@ -8,14 +8,12 @@ import { TodoService } from "../shared/todo.service";
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit{
-  private todos: Todo[];
+  todos: Todo[];
 
-  constructor(private todoService: TodoService) {
-    this.todos = [];
-  }
+  constructor(private todoService: TodoService) {}
 
   ngOnInit() {
-    this.todos = this.todoService.getTodos()
+    this.getTodos()
   }
 
   private toggle(todo: Todo){
@@ -24,5 +22,9 @@ export class ListComponent implements OnInit{
 
   delete(todo: Todo) {
     this.todoService.deleteTodo(todo)
+  }
+
+  getTodos(){
+    this.todoService.getTodos().subscribe(todos => this.todos = todos)
   }
 }

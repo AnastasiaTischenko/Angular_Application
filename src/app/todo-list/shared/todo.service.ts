@@ -1,24 +1,28 @@
 import { Injectable } from '@angular/core';
-import { todos } from "./data";
 import { Todo } from "./todo";
+import { AngularFireDatabase } from 'angularfire2/database';
+import { database } from 'firebase'
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class TodoService {
-  private todos: Todo[] = todos;
+  todosDB: Observable<any[]>;
+  todo: Todo;
 
-  getTodos(): Todo[]{
-    return this.todos;
+  constructor(db: AngularFireDatabase){
+    this.todosDB = db.list('/todos').valueChanges();
+  }
+
+  getTodos(): Observable<any[]>{
+    return this.todosDB;
   }
 
   createTodo(title: string) {
-    this.todos.push(new Todo(title))
+    database().ref('/todos/' + title).set(new Todo(title))
   }
 
   deleteTodo(todo: Todo) {
-    const index = this.todos.indexOf(todo);
-    if (index > -1){
-      this.todos.splice(index, 1);
-    }
+    database().ref('/todos/' + todo.title).remove();
   }
 
   toggleTodo(todo: Todo) {
