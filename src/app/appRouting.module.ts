@@ -5,12 +5,14 @@ import {NgModule} from "@angular/core";
 import { TodoListComponent } from "./todo-list/todo-list.component";
 import { TranslatorComponent } from "./translator/translator.component";
 import { HomePageComponent } from "./home-page/home-page.component";
+import { JokeListComponent } from "./joke-list/joke-list.component";
 
 const appRoutes: Routes =[
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'home', component: HomePageComponent,},
   { path: 'todo-list', component: TodoListComponent,},
-  { path: 'translator', component: TranslatorComponent,}
+  { path: 'translator', component: TranslatorComponent,},
+  { path: 'joke-list', component: JokeListComponent,}
 ];
 
 @NgModule({
