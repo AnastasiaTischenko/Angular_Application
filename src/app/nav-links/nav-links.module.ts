@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from "@angular/router";
+import {RouterModule} from "@angular/router";
 
 import { NavLinksComponent } from './nav-links.component';
+import { LinkComponent } from './link/link.component';
 
 @NgModule({
   declarations: [
-    NavLinksComponent
+    NavLinksComponent,
+    LinkComponent
   ],
   imports: [
     BrowserModule,

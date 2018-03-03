@@ -16,7 +16,7 @@ export class ListComponent implements OnInit{
     this.getTodos()
   }
 
-  private toggle(todo: Todo){
+  toggle(todo: Todo){
     this.todoService.toggleTodo(todo);
   }
 

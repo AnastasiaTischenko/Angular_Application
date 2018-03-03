@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Joke } from "../shared-jokes-data/joke";
 
 @Component({
@@ -6,14 +6,9 @@ import { Joke } from "../shared-jokes-data/joke";
   templateUrl: './joke-form.component.html',
   styleUrls: ['./joke-form.component.css']
 })
-export class JokeFormComponent implements OnInit {
-
+export class JokeFormComponent{
   @Output() jokeCreated = new EventEmitter<Joke>();
 
-  constructor() { }
-
-  ngOnInit() {
-  }
   createJoke(setup: string, punchline: string) {
     this.jokeCreated.emit(new Joke(setup, punchline));
   }
