@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output} from '@angular/core';
 import { Joke } from "../shared-jokes-data/joke";
 
 @Component({
