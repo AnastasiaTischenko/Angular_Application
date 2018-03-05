@@ -1,7 +1,7 @@
 export class Joke {
-  public setup: string;
-  public punchline: string;
-  public hide: boolean;
+  setup: string;
+  punchline: string;
+  hide: boolean;
 
   constructor(setup: string, punchline: string) {
     this.setup = setup;
