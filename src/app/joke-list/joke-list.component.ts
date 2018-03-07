@@ -25,7 +25,6 @@ export class JokeListComponent implements AfterViewInit{
 
   ngAfterViewInit() {
     let jokes: JokeComponent[] = this.jokeViewChildren.toArray();
-    console.log(jokes);
     this.headerEl.nativeElement.textContent = "Best Joke Machine";
   }
 }

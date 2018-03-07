@@ -1,8 +1,7 @@
-<div class="card card-block">
+<div class="card card-block"
+     CardHover>
   <h4 class="card-title">{{data.setup}}</h4>
   <p class="card-text"
-     [hidden]="data.hide">{{data.punchline}}</p>
-  <a (click)="data.toggle()"
-     class="btn btn-warning">Tell Me
-  </a>
+     [style.display]="'none'">{{data.punchline}}</p>
 </div>
+

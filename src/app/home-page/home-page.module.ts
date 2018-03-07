@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms'
 
 import { HomePageComponent } from './home-page.component';
 
@@ -8,7 +9,8 @@ import { HomePageComponent } from './home-page.component';
     HomePageComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule
   ]
 })
 export class HomePageModule {}
