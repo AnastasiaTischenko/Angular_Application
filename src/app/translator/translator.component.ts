@@ -23,7 +23,7 @@ export class TranslatorComponent implements OnInit{
 
   constructor(private httpService: HttpService){}
 
-  ngOnInit(){
+  ngOnInit() {
     this.httpService.getData(this.urlSelects).subscribe((data) => {
       this.langs = data['langs'];
     })
@@ -45,13 +45,20 @@ export class TranslatorComponent implements OnInit{
     });
   }
 
-  onSubmit(){
+  onSubmit() {
     this.urlTrans = `${API_INFO.apiTrans}?&key=${API_INFO.key}&text=${this.transForm.value.text}&lang=${this.transForm.value.langFrom}-${this.transForm.value.langTo}&format=plain`;
     this.httpService.getData(this.urlTrans).subscribe(data => {
       if (data['code'] = 200) {
         this.translatedText = data['text'][0];
       }
-      console.log(data)
-    })
+    });
+  }
+
+  changeSel() {
+    this.transForm.setValue({
+      langFrom: this.transForm.value.langTo,
+      langTo: this.transForm.value.langFrom,
+      text: this.transForm.value.text
+    });
   }
 }

@@ -13,7 +13,8 @@
       </div>
 
       <div class="col-md-1 align-self-center">
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-primary"
+                (click)="changeSel()">
           <i class="material-icons">autorenew</i>
         </button>
       </div>
@@ -30,7 +31,7 @@
       </div>
     </div>
 
-    <div class="d-flex align-content-stretch flex-wrap btn-outline-info">
+    <div class="d-flex align-content-stretch flex-wrap btn-primary">
       <div class="form-group col-md-5">
         <label for="exampleFormControlTextarea1">Your text</label>
         <textarea class="form-control border-0" id="exampleFormControlTextarea1" rows="3"
@@ -43,14 +44,12 @@
         <p><i class="material-icons">arrow_forward</i></p>
       </button>
 
-      <div class="card w-100 col-md-5">
+      <div class="card w-100 col-md-5 text-primary">
         <div class="card-body">
           <h5 class="card-title">Translated text</h5>
           <p class="card-text"> {{ translatedText }}</p>
         </div>
       </div>
     </div>
-
-
   </form>
 </div>
