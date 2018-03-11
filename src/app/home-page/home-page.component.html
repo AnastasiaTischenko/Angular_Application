@@ -13,7 +13,7 @@
              formControlName="firstName"
              required>
       <div class="form-control-feedback"
-           *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+           *ngIf="getAlarm()">
         <p *ngIf="firstName.errors.required">First Name is required</p>
       </div>
     </div>
@@ -86,3 +86,5 @@
 
   <button type="submit" class="btn btn-primary" >Submit</button>
 </form>
+
+

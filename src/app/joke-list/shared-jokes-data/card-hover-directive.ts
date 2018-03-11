@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Renderer, HostListener, HostBinding  } from '@angular/core';
 
 @Directive({
-  selector:"[CardHover]"
+  selector:'[CardHover]'
 })
 export class CardHoverDirective {
   @HostBinding('class.card-outline-primary') private ishovering: boolean;

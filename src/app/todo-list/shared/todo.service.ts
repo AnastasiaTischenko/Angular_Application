@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Todo } from "./todo";
-// import { AngularFireDatabase } from 'angularfire2/database';
-import { database } from 'firebase'
+import { Todo } from './todo';
 import { Observable } from 'rxjs/Observable';
-import { FireBaseService} from "../../fire-base.service";
+import { FireBaseService} from '../../fire-base.service';
 
 @Injectable()
 export class TodoService {

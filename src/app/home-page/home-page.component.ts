@@ -52,9 +52,13 @@ export class HomePageComponent implements OnInit {
 
   submit(){
     if (this.myform.valid) {
-      console.log(this.myform.value);
       this.myform.reset();
     }
+  }
+
+  getAlarm() {
+    console.log(this.myform.value.name.firstName);
+    // el.errors && (el.dirty || el.touched) ? true : false;
   }
 
 }

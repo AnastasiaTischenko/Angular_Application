@@ -1,30 +1,33 @@
-import { Component, ViewChildren, QueryList, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
-import { Joke } from './shared-jokes-data/joke'
-import { JokeComponent } from './joke/joke.component'
+import { Component, ViewChildren, QueryList, AfterViewInit, ViewChild, ElementRef, OnInit} from '@angular/core';
+import { Joke } from './shared-jokes-data/joke';
+import { JokeComponent } from './joke/joke.component';
+import {JokeService} from './shared-jokes-data/joke.service';
 
 @Component({
   selector: 'app-joke-list',
   templateUrl: './joke-list.component.html',
   styleUrls: ['./joke-list.component.css']
 })
-export class JokeListComponent implements AfterViewInit{
+export class JokeListComponent implements OnInit, AfterViewInit{
   jokes: Joke[];
   @ViewChildren(JokeComponent) jokeViewChildren: QueryList<JokeComponent>;
-  @ViewChild("header") headerEl: ElementRef;
-  constructor() {
-    this.jokes = [
-      new Joke("What did the cheese say when it looked in the mirror?", "Hello-me (Halloumi)"),
-      new Joke("What kind of cheese do you use to disguise a small horse?", "Mask-a-pony (Mascarpone)"),
-      new Joke("A kid threw a lump of cheddar at me", "I thought ‘That’s not very mature’"),
-    ];
+  @ViewChild('header') headerEl: ElementRef;
+  constructor(private jokeServices: JokeService) {
+  }
+
+  ngOnInit() {
+    this.getJokes();
   }
 
   addJoke(joke) {
-    this.jokes.unshift(joke);
+    this.jokeServices.createJoke(joke);
   }
 
   ngAfterViewInit() {
-    let jokes: JokeComponent[] = this.jokeViewChildren.toArray();
-    this.headerEl.nativeElement.textContent = "Best Joke Machine";
+    this.headerEl.nativeElement.textContent = 'Best Joke Machine';
+  }
+
+  getJokes(){
+    this.jokeServices.getJoke().subscribe(jokes => this.jokes = jokes);
   }
 }

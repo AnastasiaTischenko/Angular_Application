@@ -6,10 +6,11 @@ import { Joke } from "../shared-jokes-data/joke";
   templateUrl: './joke-form.component.html',
   styleUrls: ['./joke-form.component.css']
 })
-export class JokeFormComponent{
+export class JokeFormComponent {
   @Output() jokeCreated = new EventEmitter<Joke>();
 
   createJoke(setup: string, punchline: string) {
     this.jokeCreated.emit(new Joke(setup, punchline));
+
   }
 }

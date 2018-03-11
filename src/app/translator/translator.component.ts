@@ -3,6 +3,7 @@ import { HttpService } from '../http.service';
 import { API_INFO } from './shared-Api/API-data';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-translator',
@@ -19,7 +20,7 @@ export class TranslatorComponent implements OnInit{
   languageFrom: FormControl;
   languageTo: FormControl;
   sourseText: FormControl;
-  translatedText: string;
+  translatedText;
 
   constructor(private httpService: HttpService){}
 
@@ -49,7 +50,7 @@ export class TranslatorComponent implements OnInit{
     this.urlTrans = `${API_INFO.apiTrans}?&key=${API_INFO.key}&text=${this.transForm.value.text}&lang=${this.transForm.value.langFrom}-${this.transForm.value.langTo}&format=plain`;
     this.httpService.getData(this.urlTrans).subscribe(data => {
       if (data['code'] = 200) {
-        this.translatedText = data['text'][0];
+        this.translatedText = _.first(data['text']);
       }
     });
   }

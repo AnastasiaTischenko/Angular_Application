@@ -6,6 +6,6 @@ import { Joke } from "../shared-jokes-data/joke";
   templateUrl: './joke.component.html',
   styleUrls: ['./joke.component.css']
 })
-export class JokeComponent{
+export class JokeComponent {
   @Input('joke') data: Joke;
 }
