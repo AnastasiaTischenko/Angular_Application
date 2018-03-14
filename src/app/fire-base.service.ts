@@ -13,7 +13,8 @@ export class FireBaseService {
   }
 
   createData(key: string, data: Object) {
-    database().ref(key).set(data)
+    console.log(data)
+    database().ref(key).set(data);
   }
 
   deleteData(key: string) {

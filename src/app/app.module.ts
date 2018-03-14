@@ -15,6 +15,7 @@ import { NavLinksModule } from './nav-links/nav-links.module';
 import { FireBaseService} from './fire-base.service';
 import { HttpService } from './http.service';
 import { EnterGuard } from './enter.guard';
+import {AuthorizationService} from './authorization.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { EnterGuard } from './enter.guard';
   providers: [
     FireBaseService,
     HttpService,
-    EnterGuard
+    EnterGuard,
+    AuthorizationService
   ]
 })
 export class AppModule { }

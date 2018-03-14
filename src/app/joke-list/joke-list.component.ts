@@ -8,7 +8,7 @@ import {JokeService} from './shared-jokes-data/joke.service';
   templateUrl: './joke-list.component.html',
   styleUrls: ['./joke-list.component.css']
 })
-export class JokeListComponent implements OnInit, AfterViewInit{
+export class JokeListComponent implements OnInit, AfterViewInit {
   jokes: Joke[];
   @ViewChildren(JokeComponent) jokeViewChildren: QueryList<JokeComponent>;
   @ViewChild('header') headerEl: ElementRef;
@@ -27,7 +27,7 @@ export class JokeListComponent implements OnInit, AfterViewInit{
     this.headerEl.nativeElement.textContent = 'Best Joke Machine';
   }
 
-  getJokes(){
+  getJokes() {
     this.jokeServices.getJoke().subscribe(jokes => this.jokes = jokes);
   }
 }

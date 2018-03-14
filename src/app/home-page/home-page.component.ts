@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {AuthorizationService} from '../authorization.service';
 
 @Component({
   selector: 'app-home-page',
@@ -12,7 +13,7 @@ export class HomePageComponent implements OnInit {
     'English',
     'French',
     'German',
-  ]
+  ];
   firstName: FormControl;
   lastName: FormControl;
   email: FormControl;
@@ -23,6 +24,8 @@ export class HomePageComponent implements OnInit {
     this.createFormControls();
     this.createForm();
   }
+
+  constructor(private autho: AuthorizationService) {}
 
   createFormControls() {
     this.firstName = new FormControl('', Validators.required);
@@ -50,15 +53,33 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  submit(){
+  authorization() {
     if (this.myform.valid) {
+      this.autho.authorization(this.myform.value);
       this.myform.reset();
     }
   }
 
-  getAlarm() {
-    console.log(this.myform.value.name.firstName);
-    // el.errors && (el.dirty || el.touched) ? true : false;
+  invalidAlarm(field) {
+    return field.errors && (field.dirty || field.touched);
   }
 
+  isRequired(field) {
+    return field.errors.required;
+  }
+
+  displayFieldCss(field: ElementRef) {
+    return {
+      'has-danger': this.isFieldInvalid(field),
+      'has-success': this.isFieldValid(field)
+    };
+  }
+
+  isFieldValid(field) {
+    return field.valid && (field.dirty || field.touched);
+  }
+
+  isFieldInvalid(field) {
+    return field.invalid && (field.dirty || field.touched);
+  }
 }

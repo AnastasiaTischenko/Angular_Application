@@ -1,8 +1,9 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { HttpService } from '../http.service';
 import { API_INFO } from './shared-Api/API-data';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs/Subject';
+import { filter } from 'rxjs/operators';
 import * as _ from 'lodash';
 
 @Component({
@@ -10,19 +11,20 @@ import * as _ from 'lodash';
   templateUrl: './translator.component.html',
   styleUrls: ['./translator.component.css']
 })
-export class TranslatorComponent implements OnInit{
-  private autoLang: string = 'ru';
-  private urlSelects: string = `${API_INFO.apiLang}?&key=${API_INFO.key}&ui=${this.autoLang}`;
+export class TranslatorComponent implements OnInit, OnDestroy {
+  private autoLang = 'ru';
+  private urlSelects = `${API_INFO.apiLang}?&key=${API_INFO.key}&ui=${this.autoLang}`;
   private urlTrans: string;
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   transForm: FormGroup;
-  langs;
+  langs: Object;
   languageFrom: FormControl;
   languageTo: FormControl;
   sourseText: FormControl;
-  translatedText;
+  translatedText: string;
 
-  constructor(private httpService: HttpService){}
+  constructor(private httpService: HttpService) {}
 
   ngOnInit() {
     this.httpService.getData(this.urlSelects).subscribe((data) => {
@@ -48,11 +50,11 @@ export class TranslatorComponent implements OnInit{
 
   onSubmit() {
     this.urlTrans = `${API_INFO.apiTrans}?&key=${API_INFO.key}&text=${this.transForm.value.text}&lang=${this.transForm.value.langFrom}-${this.transForm.value.langTo}&format=plain`;
-    this.httpService.getData(this.urlTrans).subscribe(data => {
-      if (data['code'] = 200) {
+    this.httpService.getData(this.urlTrans)
+      .pipe(filter(data => data['code'] === 200))
+      .subscribe(data => {
         this.translatedText = _.first(data['text']);
-      }
-    });
+      });
   }
 
   changeSel() {
@@ -61,5 +63,10 @@ export class TranslatorComponent implements OnInit{
       langTo: this.transForm.value.langFrom,
       text: this.transForm.value.text
     });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

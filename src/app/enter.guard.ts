@@ -1,9 +1,17 @@
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
-import {Observable} from 'rxjs/Rx';
+import {CanActivate, Router} from '@angular/router';
+import { AuthorizationService } from './authorization.service';
+import { Injectable } from '@angular/core';
 
-export class EnterGuard implements CanActivate{
+@Injectable()
+export class EnterGuard implements CanActivate {
+  constructor(public auth: AuthorizationService, public router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):  boolean{
-    return confirm('Вы уверены, что хотите перейти?');
+  canActivate(): boolean {
+    if (!this.auth.isAuthorized()) {
+      this.router.navigate(['home']);
+      alert('Please enter correct data')
+      return false;
+    }
+    return true;
   }
 }
