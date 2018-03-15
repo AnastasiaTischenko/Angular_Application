@@ -2,6 +2,7 @@ import { Component, ViewChildren, QueryList, AfterViewInit, ViewChild, ElementRe
 import { Joke } from './shared-jokes-data/joke';
 import { JokeComponent } from './joke/joke.component';
 import {JokeService} from './shared-jokes-data/joke.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-joke-list',
@@ -9,14 +10,14 @@ import {JokeService} from './shared-jokes-data/joke.service';
   styleUrls: ['./joke-list.component.css']
 })
 export class JokeListComponent implements OnInit, AfterViewInit {
-  jokes: Joke[];
+  jokes: Observable<Joke[]>;
   @ViewChildren(JokeComponent) jokeViewChildren: QueryList<JokeComponent>;
   @ViewChild('header') headerEl: ElementRef;
   constructor(private jokeServices: JokeService) {
   }
 
   ngOnInit() {
-    this.getJokes();
+    this.jokes = this.getJokes();
   }
 
   addJoke(joke) {
@@ -28,6 +29,7 @@ export class JokeListComponent implements OnInit, AfterViewInit {
   }
 
   getJokes() {
-    this.jokeServices.getJoke().subscribe(jokes => this.jokes = jokes);
+    return this.jokeServices.getJoke();
   }
+
 }

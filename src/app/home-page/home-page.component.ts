@@ -28,11 +28,12 @@ export class HomePageComponent implements OnInit {
   constructor(private autho: AuthorizationService) {}
 
   createFormControls() {
+    const validEmail = '[^ @]*@[^ @]*';
     this.firstName = new FormControl('', Validators.required);
     this.lastName = new FormControl('', Validators.required);
     this.email = new FormControl('', [
       Validators.required,
-      Validators.pattern('[^ @]*@[^ @]*')
+      Validators.pattern(validEmail)
     ]);
     this.password = new FormControl('', [
       Validators.required,
@@ -60,26 +61,30 @@ export class HomePageComponent implements OnInit {
     }
   }
 
-  invalidAlarm(field) {
-    return field.errors && (field.dirty || field.touched);
+  invalidAlarm(field): boolean {
+    return field.errors && this.dirtyOrTouched(field);
   }
 
-  isRequired(field) {
+  isRequired(field): boolean {
     return field.errors.required;
   }
 
-  displayFieldCss(field: ElementRef) {
+  displayFieldCss(field: ElementRef): Object {
     return {
       'has-danger': this.isFieldInvalid(field),
       'has-success': this.isFieldValid(field)
     };
   }
 
-  isFieldValid(field) {
-    return field.valid && (field.dirty || field.touched);
+  isFieldValid(field): boolean {
+    return field.valid && this.dirtyOrTouched(field);
   }
 
-  isFieldInvalid(field) {
-    return field.invalid && (field.dirty || field.touched);
+  isFieldInvalid(field): boolean {
+    return field.invalid && this.dirtyOrTouched(field);
+  }
+
+  dirtyOrTouched(field): boolean {
+    return field.dirty || field.touched;
   }
 }

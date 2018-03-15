@@ -3,6 +3,7 @@ import { HttpService } from '../http.service';
 import { API_INFO } from './shared-Api/API-data';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/takeUntil';
 import { filter } from 'rxjs/operators';
 import * as _ from 'lodash';
 
@@ -15,7 +16,7 @@ export class TranslatorComponent implements OnInit, OnDestroy {
   private autoLang = 'ru';
   private urlSelects = `${API_INFO.apiLang}?&key=${API_INFO.key}&ui=${this.autoLang}`;
   private urlTrans: string;
-  destroy$: Subject<boolean> = new Subject<boolean>();
+  private unsubscribe: Subject<void> = new Subject();
 
   transForm: FormGroup;
   langs: Object;
@@ -27,9 +28,11 @@ export class TranslatorComponent implements OnInit, OnDestroy {
   constructor(private httpService: HttpService) {}
 
   ngOnInit() {
-    this.httpService.getData(this.urlSelects).subscribe((data) => {
-      this.langs = data['langs'];
-    })
+    this.httpService.getData(this.urlSelects)
+      .takeUntil(this.unsubscribe)
+      .subscribe((data) => {
+        this.langs = data['langs'];
+    });
     this.createFormFields();
     this.createForm();
   }
@@ -66,7 +69,7 @@ export class TranslatorComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }
