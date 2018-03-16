@@ -7,7 +7,7 @@ import { TodoService } from '../shared/todo.service';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent {
-  private title: string = '';
+  private title = '';
 
   constructor(private todoService: TodoService) { }
 

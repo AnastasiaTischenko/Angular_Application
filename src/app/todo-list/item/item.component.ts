@@ -12,11 +12,11 @@ export class ItemComponent {
  @Output() toggle = new EventEmitter<Object>();
   constructor() { }
 
-  private onToggle(){
+  private onToggle() {
     this.toggle.emit(this.todo);
   }
 
-  private onDelete(){
-    this.delete.emit(this.todo)
+  private onDelete() {
+    this.delete.emit(this.todo);
   }
 }

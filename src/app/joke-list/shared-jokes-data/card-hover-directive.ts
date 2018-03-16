@@ -1,22 +1,22 @@
-import { Directive, ElementRef, Renderer, HostListener, HostBinding  } from '@angular/core';
+import { Directive, HostListener, HostBinding, Output, EventEmitter } from '@angular/core';
 
 @Directive({
   selector: '[CardHover]'
 })
 export class CardHoverDirective {
-  @HostBinding('class.card-outline-primary') private ishovering: boolean;
-
-  constructor(private el: ElementRef, private renderer: Renderer) {}
+  @Output() hover = new EventEmitter();
+  ishovering: string;
+  @HostBinding('class.card-outline-primary') private border: boolean;
 
   @HostListener('mouseover') onMouseOver() {
-    const part = this.el.nativeElement.querySelector('.card-text');
-    this.renderer.setElementStyle(part, 'display', 'block');
-    this.ishovering = true;
+    this.border = true;
+    this.ishovering = 'block';
+    this.hover.emit(this.ishovering);
   }
 
   @HostListener('mouseout') onMouseOut() {
-    const part = this.el.nativeElement.querySelector('.card-text');
-    this.renderer.setElementStyle(part, 'display', 'none');
-    this.ishovering = false;
+    this.border = false;
+    this.ishovering = 'none';
+    this.hover.emit(this.ishovering);
   }
 }
