@@ -7,7 +7,7 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  getData(url: string): Observable<any>{
+  getData(url: string): Observable<any> {
     return this.http.get(url);
   }
 }

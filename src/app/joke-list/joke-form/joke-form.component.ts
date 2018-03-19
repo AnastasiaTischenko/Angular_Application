@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output} from '@angular/core';
-import { Joke } from "../shared-jokes-data/joke";
+import { Joke } from '../shared-jokes-data/joke';
 
 @Component({
   selector: 'app-joke-form',

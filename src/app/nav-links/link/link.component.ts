@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {Link} from "../../link";
+import {Link} from '../../link';
 
 @Component({
   selector: 'app-link',
